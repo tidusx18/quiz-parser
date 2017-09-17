@@ -1,0 +1,22 @@
+#Bb PackageInfo Property File
+#Thu Sep 14 15:56:50 EDT 2017
+java.class.path=/usr/local/blackboard/apps/service-wrapper/lib/wrapper.jar\:/usr/local/blackboard/jdk/lib/tools.jar\:/usr/local/blackboard/apps/tomcat/lib/bb-tomcat-bootstrap.jar\:/usr/local/blackboard/apps/tomcat/bin/bootstrap.jar\:/usr/local/blackboard/apps/tomcat/bin/tomcat-juli.jar\:/usr/local/blackboard/apps/tomcat/newrelic/newrelic.jar
+cx.config.course.id=NC-NEC1000DanielVictoriano_03292016-10000
+java.vendor=Oracle Corporation
+os.name=Linux
+os.arch=amd64
+java.home=/usr/local/blackboard/jdk/jre
+db.product.name=Oracle
+cx.package.info.version=6.0
+os.version=2.6.32-358.23.2.el6.x86_64
+cx.config.full.value=CxConfig{operation\=EXPORT, courseid\=NC-NEC1000DanielVictoriano_03292016-10000, package\=/usr/local/blackboard/content/vi/BBLEARN/sessions/9/5/6/3/3/2/3/5/session/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz.zip, logger\=CxLogger{logs\=[Log{name\=/usr/local/blackboard/content/vi/BBLEARN/sessions/9/5/6/3/3/2/3/5/session/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz.log, verbosity\=default}, Log{name\=STDOUT, verbosity\=default}], logHooks\=[]}, resource_type_inclusions\=[], area_inclusions\=[ALIGNMENTS, RUBRIC], area_exclusions\=[ALL], object_inclusions\={POOL\=[_18058220_1]}, object_exclusions\={}, features\={ArchiveUserPasswords\=false, CreateOrg\=false, AlternateAssessmentCsLinks\=false, ImportCourseStructure\=false, Bb5LinkToBrokenImageFix\=true}, strHostName\=null, isCommandLineRequest\=false, isCourseConversion\=false, eventHandlers\=[]}
+cx.config.package.name=/usr/local/blackboard/content/vi/BBLEARN/sessions/9/5/6/3/3/2/3/5/session/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz.zip
+db.product.version=Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production\nWith the Partitioning, OLAP, Data Mining and Real Application Testing options
+db.driver.name=Oracle JDBC driver
+cx.config.operation=blackboard.apps.cx.CxConfig$Operation\:EXPORT
+java.version=1.8.0_121
+cx.config.package.identifier=b487e6fff6374f7d89b8fa24a4d55275
+db.driver.version=12.1.0.2.0
+java.default.locale=en_US
+app.release.number=3000.1.5-rel.94+071908f
+cx.config.logs=[Log{name\=/usr/local/blackboard/content/vi/BBLEARN/sessions/9/5/6/3/3/2/3/5/session/Pool_ExportFile_NC-NEC1000DanielVictoriano_03292016-10000_Practice Quiz.log, verbosity\=default}, Log{name\=STDOUT, verbosity\=default}]

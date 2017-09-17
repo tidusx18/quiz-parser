@@ -3,13 +3,14 @@ function QuizPool(quizPool) {
   this.currentQuestion = {};
   this.questions = [];
   this.matchPatterns = {
-    type: /^Type: (\S{1,3})/im,
-    prompt: /^\d{1,3}(?:\) |\. )/im,
-    answer: /^[a-z](?:\) |\. )/im,
-    correctAnswer: /^\*[a-z](?:\) |\. )/i,
-    trueFalseQuestion: /^[ab](?:\)|\.) (?:true|false)/i,
-    splitPool: /(?=^(?:\d{1,3}(?:\)|\.) |Type: \S{1,3}))/igm,
-    splitQuestion: /(?=^(?:\d{1,3}|[a-z])(?:\)|\.) )/igm
+    type: /^Type: (\S{1,3})/i,
+    prompt: /^\d{1,3}(?:\)|\.) /i,
+    answer: /\*{0,1}([a-z])(?:\)|\.) ([\s\S]*)/i,
+    correctAnswer: /^\*([a-z])(?:\)|\.) /i,
+    // trueFalseQuestion: /^[ab](?:\)|\.) (?:true|false)/i,
+    splitPool: /(?=^(?:\d{1,3}(?:\)|\.) |Type: \S{1,3}))/im,
+    splitQuestion: /(?=^(?:\d{1,3}|\*{0,1}[a-z])(?:\)|\.) )/im,
+    // splitAnswer: /(?:^(\*{0,1}[a-z])(?:\)|\.))/i
   };
 }
 
@@ -32,6 +33,7 @@ QuizPool.prototype.evaluatePool = function() {
   for(let question of questions) {
     this.__startNewQuestion();
     let splitQuestion = question.split(this.matchPatterns.splitQuestion);
+    
     for(let item of splitQuestion) {
       if(this.__search(item, 'type')) {
         this.currentQuestion.type = item;
@@ -40,7 +42,12 @@ QuizPool.prototype.evaluatePool = function() {
         this.currentQuestion.prompt = item;
       }
       else if(this.__search(item, 'answer')) {
-        this.currentQuestion.answers.push(item);
+        if(this.__search(item, 'correctAnswer')) {
+          let correctAnswer = this.__getMatch(item, 'correctAnswer');
+          this.__addCorrectAnswer(correctAnswer[1]);
+        }
+        let answer = this.__getMatch(item, 'answer');
+        this.__addAnswer([answer[1], answer[2]]); // [1] is answer letter/number, [2] is text.
       }
     }
     this.__addQuestion(this.currentQuestion);
@@ -64,6 +71,14 @@ QuizPool.prototype.__addQuestion = function(question) {
   this.questions.push(question);
 };
 
+QuizPool.prototype.__addAnswer = function(answer) {
+  this.currentQuestion.answers.push(answer);
+};
+
+QuizPool.prototype.__addCorrectAnswer = function(correctAnswer) {
+  this.currentQuestion.correctAnswers.push(correctAnswer);
+};
+
 QuizPool.prototype.__startNewQuestion = function() {
   return this.currentQuestion = {
       type: '',
@@ -74,14 +89,25 @@ QuizPool.prototype.__startNewQuestion = function() {
     }
 };
 
+QuizPool.prototype.__getMatch = function(item, patternName) {
+  if(!item) {
+    return console.log('Item paramater required to find match');
+  }
+  if (this.matchPatterns[patternName]) {
+  return item.match(this.matchPatterns[patternName]);
+  }
+  console.log('Pattern does not exist: ', patternName)
+  return false;
+}
+
 QuizPool.prototype.__search = function(item, patternName) {
   if(!item) {
-    return console.log('Item paramater required for search - exists()');
+    return console.log('Item paramater required for search');
   }
   if (this.matchPatterns[patternName]) {
   return item.search(this.matchPatterns[patternName]) > -1;
   }
-  console.log('No Pattern Matched: ', patternName)
+  console.log('Pattern does not exist: ', patternName)
   return false;
 };
 
